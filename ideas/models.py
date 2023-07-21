@@ -1,13 +1,8 @@
 from django.db import models
 from django.contrib.auth.models import User
-# Create your models here.
-project_type=(
-    (0,'mini project'),
-    (1,'main project'),
-    (2,'live project'),
 
-    
-)
+# Create your models here.
+
 class Master(models.Model):
     created_user=models.ForeignKey(User, null=True,blank=True, on_delete=models.CASCADE)
     class Meta:
@@ -36,6 +31,11 @@ class Technology(Master):
 
 
 class Project_ideas(Master):
+    project_type=(
+    (0,'mini project'),
+    (1,'main project'),
+    (2,'live project'),
+  )
     course = models.ForeignKey(Course,on_delete=models.CASCADE)
     project_type = models.IntegerField(choices=project_type, null=False)
     description = models.TextField()
@@ -47,3 +47,5 @@ class Project_ideas(Master):
 
     class Meta:
         verbose_name_plural="Project_ideas"
+
+
